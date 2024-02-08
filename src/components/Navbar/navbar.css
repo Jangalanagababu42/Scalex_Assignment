@@ -1,0 +1,16 @@
+nav {
+  background-color: black;
+  top: 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  position: sticky;
+}
+
+.navlink {
+  font-size: 24px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+}
