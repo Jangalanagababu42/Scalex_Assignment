@@ -4,9 +4,12 @@ export const BookContext = createContext();
 
 const BookProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const getBooks = async () => {
     try {
+      setLoading(true);
       const response = await fetch(
         `https://openlibrary.org/people/mekBot/books/already-read.json`
       );
@@ -25,7 +28,11 @@ const BookProvider = ({ children }) => {
         isRead: Math.random() < 0.5,
       }));
       setBooks(initialBookList);
-    } catch (error) {}
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const toggleReadStatus = (cover_id) => {
@@ -41,9 +48,17 @@ const BookProvider = ({ children }) => {
 
     setBooks(updatedBookList);
   };
+
   useEffect(() => {
     getBooks();
   }, []);
+  if (loading) {
+    return <p style={{ textalign: "center" }}>Loading...</p>;
+  }
+
+  if (error) {
+    return <p style={{ textalign: "center" }}>Error: {error.message}</p>;
+  }
 
   return (
     <BookContext.Provider value={{ books, toggleReadStatus }}>

@@ -9,7 +9,8 @@ const BookShelf = () => {
 
   return (
     <div className="bookshelf-main">
-      <h1>The Ocean of Knowlegde</h1>
+      <h1>Pustak</h1>
+      <h3>The Ocean of Knowlegde</h3>
       <hr />
       <ul>
         {books?.length === 0 ? (
