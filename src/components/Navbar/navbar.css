@@ -5,6 +5,8 @@ nav {
   display: flex;
   justify-content: space-evenly;
   position: sticky;
+
+  z-index: 100;
 }
 
 .navlink {
